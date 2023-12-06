@@ -14,11 +14,13 @@ dotenv.config();
 // Express app
 const app = Express();
 
+const corsOptions = {
+    origin: "https://shiftmate-frontend.vercel.app",
+};
+app.use(cors(corsOptions));
+
 // Use cookies
 app.use(cookieParser());
-
-// Enable CORS with options for your frontend domain
-// app.use(cors());
 
 // Allow for request body to be accessed
 app.use(Express.json());
