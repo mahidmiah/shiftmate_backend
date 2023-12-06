@@ -19,10 +19,11 @@ app.use(cookieParser());
 
 app.use(
     cors({
-        origin: 'shiftmate-frontend.vercel.app',
+        origin: 'https://shiftmate-frontend.vercel.app', // Add protocol (https://)
         credentials: true,
     })
 );
+
 
 // Allow for request body to be accessed
 app.use(Express.json());
