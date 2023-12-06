@@ -48,6 +48,20 @@ app.use('/api/week', weekRouter);
 app.use('/api/shift', shiftRouter);
 app.use('/api/profile', profileRouter);
 
+const issue2options = {
+    origin: true,
+    methods: ["POST"],
+    credentials: true,
+    maxAge: 3600
+};
+app.options("/issue-2", cors(issue2options));
+app.post("/issue-2", cors(issue2options), (req, res) => {
+    console.info("POST /issue-2");
+    res.json({
+        text: "Issue #2 is fixed."
+    });
+});
+
 mongoose.connect(process.env.MONGO_URI!)
     .then(() => {
         console.log('\x1b[1m\x1b[33m[Server]\x1b[0m Connected to the database!');
