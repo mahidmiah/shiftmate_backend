@@ -12,10 +12,16 @@ const issue2options = {
     credentials: true,
     maxAge: 3600
 };
-businessRouter.options("/login", cors(issue2options));
+businessRouter.options("*", cors(issue2options));
+businessRouter.post("/issue-3", cors(issue2options), (req, res) => {
+    console.info("POST /issue-3");
+    res.json({
+        text: "Issue #3 is fixed."
+    });
+});
 
 // Login route
-businessRouter.post('/login', cors(issue2options), (req, res) => {
+businessRouter.post('/login', (req, res) => {
     loginUser(req, res);
 });
 
