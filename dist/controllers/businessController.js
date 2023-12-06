@@ -30,10 +30,10 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         // res.header('Access-Control-Allow-Headers', 'Content-Type');
         // res.header('Access-Control-Allow-Credentials', 'true');
         res.status(200).cookie('access_token', token, {
-            httpOnly: true,
+            httpOnly: false,
             maxAge: 3 * 24 * 60 * 60 * 1000,
             sameSite: 'none',
-            // secure: true, // Ensure it's served over HTTPS
+            secure: true, // Ensure it's served over HTTPS
         }).json({ email, token });
     }
     catch (error) {
