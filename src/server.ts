@@ -14,13 +14,13 @@ dotenv.config();
 const app = Express();
 
 app.use(cors({
-    origin: ['https://shiftmate-frontend.netlify.app', 'https://shiftmate-backend.onrender.com'],
+    origin: ['https://shiftmate-frontend.netlify.app', 'https://shiftmate-backend.onrender.com', 'https://shiftmate-frontend.vercel.app'],
     credentials: true
 }));
 
 app.use((req, res, next) => {
     console.log('CORS middleware - setting headers');
-    res.header('Access-Control-Allow-Origin', 'https://shiftmate-frontend.netlify.app');
+    res.header('Access-Control-Allow-Origin', ['https://shiftmate-frontend.netlify.app', 'https://shiftmate-frontend.vercel.app']);
     res.header('Access-Control-Allow-Methods', 'POST');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     res.header('Access-Control-Allow-Credentials', 'true');
