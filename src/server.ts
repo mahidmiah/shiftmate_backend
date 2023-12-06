@@ -43,7 +43,7 @@ const issue2options = {
     credentials: true,
     maxAge: 3600
 };
-app.options("/issue-2", cors(issue2options));
+app.options("*", cors(issue2options));
 app.post("/issue-2", cors(issue2options), (req, res) => {
     console.info("POST /issue-2");
     res.json({
