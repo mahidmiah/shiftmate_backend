@@ -20,7 +20,7 @@ export const loginUser = async (req: Request, res:Response) => {
         // res.header('Access-Control-Allow-Headers', 'Content-Type');
         // res.header('Access-Control-Allow-Credentials', 'true');
         res.status(200).cookie('access_token', token, {
-            httpOnly: true,
+            httpOnly: false,
             maxAge: 3 * 24 * 60 * 60 * 1000, // 3 days (in milliseconds)
             sameSite: 'none', 
             secure: true, // Ensure it's served over HTTPS
