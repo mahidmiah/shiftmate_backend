@@ -18,7 +18,7 @@ const app = Express();
 app.use(cookieParser());
 
 // Enable CORS with options for your frontend domain
-app.use(cors());
+// app.use(cors());
 
 // Allow for request body to be accessed
 app.use(Express.json());
