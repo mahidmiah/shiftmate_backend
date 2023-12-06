@@ -7,6 +7,8 @@ const businessRouter = Router();
 
 // Login route
 businessRouter.post('/login', (req, res) => {
+    res.header('Access-Control-Allow-Origin', 'https://shiftmate-frontend.vercel.app');
+    res.header('Access-Control-Allow-Credentials', 'true');
     loginUser(req, res);
 });
 

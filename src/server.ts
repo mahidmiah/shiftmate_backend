@@ -24,6 +24,7 @@ app.use(
     })
 );
 
+app.options('*', cors());
 
 // Allow for request body to be accessed
 app.use(Express.json());
