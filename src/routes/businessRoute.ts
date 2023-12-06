@@ -7,7 +7,6 @@ const businessRouter = Router();
 
 // Login route
 businessRouter.post('/login', (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
     loginUser(req, res);
 });
 
