@@ -33,7 +33,6 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             httpOnly: true,
             maxAge: 3 * 24 * 60 * 60 * 1000,
             sameSite: 'none',
-            secure: true, // Add this line
         }).json({ email, token });
     }
     catch (error) {
