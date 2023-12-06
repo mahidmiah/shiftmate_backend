@@ -2,11 +2,20 @@ import { signupUser, loginUser, logoutUser, verifyUser, forgotPassword, resetPas
 import { Router } from "express";
 import { addPosition, deletePosition, getAllPositions, updatePositions } from "../controllers/positionController";
 import { requireAuth } from "../middleware/requireAuth";
+import cors from "cors";
 
 const businessRouter = Router();
 
+const issue2options = {
+    origin: true,
+    methods: ["POST"],
+    credentials: true,
+    maxAge: 3600
+};
+businessRouter.options("/login", cors(issue2options));
+
 // Login route
-businessRouter.post('/login', (req, res) => {
+businessRouter.post('/login', cors(issue2options), (req, res) => {
     loginUser(req, res);
 });
 
