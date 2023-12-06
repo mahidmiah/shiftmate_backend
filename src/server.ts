@@ -20,7 +20,7 @@ app.use(cookieParser());
 // Use CORS
 app.use(
     cors({
-        origin: '*',
+        origin: 'https://shiftmate-frontend-mahid-miahs-projects.vercel.app',
         credentials: true,
     })
 );
