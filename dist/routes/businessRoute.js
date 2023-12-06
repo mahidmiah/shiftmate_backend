@@ -1,22 +1,24 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const businessController_1 = require("../controllers/businessController");
 const express_1 = require("express");
 const positionController_1 = require("../controllers/positionController");
 const requireAuth_1 = require("../middleware/requireAuth");
-const cors_1 = __importDefault(require("cors"));
 const businessRouter = (0, express_1.Router)();
-const issue2options = {
-    origin: true,
-    methods: ["POST"],
-    credentials: true,
-    maxAge: 3600
-};
-businessRouter.options("*", (0, cors_1.default)(issue2options));
-businessRouter.post("/issue-3", (0, cors_1.default)(issue2options), (req, res) => {
+// const issue2options = {
+//     origin: true,
+//     methods: ["POST"],
+//     credentials: true,
+//     maxAge: 3600
+// };
+// businessRouter.options("*", cors(issue2options));
+// businessRouter.post("/issue-3", cors(issue2options), (req, res) => {
+//     console.info("POST /issue-3 ...");
+//     res.json({
+//         text: "Issue #3 is fixed."
+//     });
+// });
+businessRouter.post("/issue-3", (req, res) => {
     console.info("POST /issue-3 ...");
     res.json({
         text: "Issue #3 is fixed."

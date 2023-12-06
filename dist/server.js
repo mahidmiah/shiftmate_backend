@@ -28,6 +28,13 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Credentials', 'true');
     next();
 });
+const issue2options = {
+    origin: true,
+    methods: ["POST"],
+    credentials: true,
+    maxAge: 3600
+};
+app.options("*", (0, cors_1.default)(issue2options));
 // Use cookies
 app.use((0, cookie_parser_1.default)());
 // Allow for request body to be accessed

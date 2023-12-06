@@ -6,14 +6,21 @@ import cors from "cors";
 
 const businessRouter = Router();
 
-const issue2options = {
-    origin: true,
-    methods: ["POST"],
-    credentials: true,
-    maxAge: 3600
-};
-businessRouter.options("*", cors(issue2options));
-businessRouter.post("/issue-3", cors(issue2options), (req, res) => {
+// const issue2options = {
+//     origin: true,
+//     methods: ["POST"],
+//     credentials: true,
+//     maxAge: 3600
+// };
+// businessRouter.options("*", cors(issue2options));
+// businessRouter.post("/issue-3", cors(issue2options), (req, res) => {
+//     console.info("POST /issue-3 ...");
+//     res.json({
+//         text: "Issue #3 is fixed."
+//     });
+// });
+
+businessRouter.post("/issue-3", (req, res) => {
     console.info("POST /issue-3 ...");
     res.json({
         text: "Issue #3 is fixed."

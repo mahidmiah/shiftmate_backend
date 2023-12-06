@@ -27,6 +27,13 @@ app.use((req, res, next) => {
     next();
 })
 
+const issue2options = {
+    origin: true,
+    methods: ["POST"],
+    credentials: true,
+    maxAge: 3600
+};
+app.options("*", cors(issue2options));
 
 // Use cookies
 app.use(cookieParser());
