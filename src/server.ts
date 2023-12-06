@@ -18,12 +18,20 @@ const app = Express();
 app.use(cookieParser());
 
 // Use CORS
-app.use(
-    cors({
-        origin: 'https://shiftmate-frontend-mahid-miahs-projects.vercel.app',
-        credentials: true,
-    })
-);
+// app.use(
+//     cors({
+//         origin: 'https://shiftmate-frontend-mahid-miahs-projects.vercel.app',
+//         credentials: true,
+//     })
+// );
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "https://shiftmate-frontend-mahid-miahs-projects.vercel.app");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+    next();
+});
 
 // Allow for request body to be accessed
 app.use(Express.json());
