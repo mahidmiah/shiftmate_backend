@@ -13,6 +13,11 @@ dotenv.config();
 // Express app
 const app = Express();
 
+app.use(cors({
+    origin: ['https://shiftmate-frontend.netlify.app', 'https://shiftmate-backend.onrender.com'],
+    credentials: true
+}));
+
 // Use cookies
 app.use(cookieParser());
 
