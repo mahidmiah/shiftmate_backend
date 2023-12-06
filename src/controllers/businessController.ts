@@ -22,7 +22,7 @@ export const loginUser = async (req: Request, res:Response) => {
         res.status(200).cookie('access_token', token, {
             httpOnly: true,
             maxAge: 3 * 24 * 60 * 60 * 1000, // 3 days (in milliseconds)
-            sameSite: 'none', 
+            sameSite: 'lax', 
             // secure: true, // Ensure it's served over HTTPS
         }).json({email, token});
     } catch (error: any) {
