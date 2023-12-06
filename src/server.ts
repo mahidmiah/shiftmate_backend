@@ -21,6 +21,14 @@ app.use(cors(
     }
 ));
 
+app.options('*', cors(
+    {
+        origin: "*",
+        methods: ["POST"],
+        credentials: true,
+    }
+));
+
 // Use cookies
 app.use(cookieParser());
 
