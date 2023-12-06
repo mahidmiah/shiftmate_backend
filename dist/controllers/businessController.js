@@ -32,7 +32,7 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(200).cookie('access_token', token, {
             httpOnly: true,
             maxAge: 3 * 24 * 60 * 60 * 1000,
-            sameSite: 'lax',
+            sameSite: 'none',
             // secure: true, // Ensure it's served over HTTPS
         }).json({ email, token });
     }
