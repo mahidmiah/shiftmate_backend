@@ -10,20 +10,16 @@ import shiftRouter from "./routes/shiftRoute";
 import profileRouter from "./routes/profileRoute";
 
 dotenv.config();
-
-const allowMethods = ["GET", "PATCH", "POST", "DELETE"];
-const allowHeaders = "authorization,content-type";
-
 // Express app
 const app = Express();
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://shiftmate-frontend.vercel.app');
-    res.setHeader('Access-Control-Allow-Methods', '*');
-    res.setHeader('Access-Control-Allow-Headers', '*');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+
+app.options('*', cors());
 
 // Use cookies
 app.use(cookieParser());
