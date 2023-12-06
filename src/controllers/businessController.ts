@@ -14,6 +14,11 @@ export const loginUser = async (req: Request, res:Response) => {
 
         // create a token
         const token = createToken(user._id);
+
+        res.header('Access-Control-Allow-Origin', 'https://shiftmate-frontend.netlify.app');
+        res.header('Access-Control-Allow-Methods', 'POST');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+        res.header('Access-Control-Allow-Credentials', 'true');
         res.status(200).cookie('access_token', token, {
             httpOnly: true,
             maxAge: 3 * 24 * 60 * 60 * 1000, // 3 days (in milliseconds)
