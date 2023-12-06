@@ -45,7 +45,7 @@ app.use((req, res, next) => {
 });
 
 // route handlers
-app.use('/api/business', businessRouter);
+app.use('/api/business', businessRouter, cors(issue2options));
 app.use('/api/employee', employeeRouter);
 app.use('/api/week', weekRouter);
 app.use('/api/shift', shiftRouter);
