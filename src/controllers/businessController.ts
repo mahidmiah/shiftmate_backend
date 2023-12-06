@@ -23,6 +23,7 @@ export const loginUser = async (req: Request, res:Response) => {
             httpOnly: true,
             maxAge: 3 * 24 * 60 * 60 * 1000, // 3 days (in milliseconds)
             sameSite: 'none', 
+            secure: true, // Ensure it's served over HTTPS
         }).json({email, token});
     } catch (error: any) {
         res.status(400).json({error: error.message});
