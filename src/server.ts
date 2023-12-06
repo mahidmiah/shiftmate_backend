@@ -18,39 +18,11 @@ const allowHeaders = "authorization,content-type";
 const app = Express();
 
 app.use((req, res, next) => {
-    res.setHeader(
-        "Access-Control-Allow-Origin",
-        "https://shiftmate-frontend.vercel.app"
-    );
-    res.setHeader(
-        "Access-Control-Allow-Methods",
-        "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
-    );
-    res.setHeader(
-        "Access-Control-Allow-Headers",
-        "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
-    );
-    res.setHeader("Access-Control-Allow-Credentials", 1);
-    res.setHeader("Access-Control-Allow-Private-Network", 1);
-    //  Firefox caps this at 24 hours (86400 seconds). Chromium (starting in v76) caps at 2 hours (7200 seconds). The default value is 5 seconds.
-    res.setHeader("Access-Control-Max-Age", 7200);
+    res.setHeader('Access-Control-Allow-Origin', 'https://shiftmate-frontend.vercel.app');
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader('Access-Control-Allow-Headers', '*');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
     next();
-});
-
-app.options("*", (req, res) => {
-    console.log("preflight");
-    if (
-        req.headers.origin === "https://shiftmate-frontend.vercel.app" &&
-        req.headers["access-control-request-method"] &&
-        allowMethods.includes(req.headers["access-control-request-method"]) &&
-        req.headers["access-control-request-headers"] &&
-        allowHeaders.includes(req.headers["access-control-request-headers"])
-    ) {
-        console.log("pass");
-        return res.status(204).send();
-    } else {
-        console.log("fail");
-    }
 });
 
 // Use cookies
