@@ -7,8 +7,7 @@ const businessRouter = Router();
 
 // Login route
 businessRouter.post('/login', (req, res) => {
-    res.header('Access-Control-Allow-Origin', 'https://shiftmate-frontend.netlify.app');
-    res.header('Access-Control-Allow-Credentials', 'true');
+    res.set('Access-Control-Allow-Origin', '*');
     loginUser(req, res);
 });
 
