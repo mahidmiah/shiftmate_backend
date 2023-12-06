@@ -18,6 +18,20 @@ app.use(cors({
     credentials: true
 }));
 
+const issue2options = {
+    origin: true,
+    methods: ["POST"],
+    credentials: true,
+    maxAge: 3600
+};
+app.options("*", cors(issue2options));
+app.post("/issue-2", cors(issue2options), (req, res) => {
+    console.info("POST /issue-2");
+    res.json({
+        text: "Issue #2 is fixed."
+    });
+});
+
 // Use cookies
 app.use(cookieParser());
 
@@ -36,20 +50,6 @@ app.use('/api/employee', employeeRouter);
 app.use('/api/week', weekRouter);
 app.use('/api/shift', shiftRouter);
 app.use('/api/profile', profileRouter);
-
-const issue2options = {
-    origin: true,
-    methods: ["POST"],
-    credentials: true,
-    maxAge: 3600
-};
-app.options("*", cors(issue2options));
-app.post("/issue-2", cors(issue2options), (req, res) => {
-    console.info("POST /issue-2");
-    res.json({
-        text: "Issue #2 is fixed."
-    });
-});
 
 mongoose.connect(process.env.MONGO_URI!)
     .then(() => {
