@@ -17,12 +17,13 @@ const app = Express();
 // Use cookies
 app.use(cookieParser());
 
-app.use(
-    cors({
-        origin: '*', // Try using a wildcard for testing purposes
-        credentials: true,
-    })
-);
+// Enable CORS with options for your frontend domain
+const corsOptions = {
+    origin: 'https://shiftmate-frontend.netlify.app',
+    credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 // Allow for request body to be accessed
 app.use(Express.json());
