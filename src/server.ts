@@ -18,6 +18,16 @@ app.use(cors({
     credentials: true
 }));
 
+app.use((req, res, next) => {
+    console.log('CORS middleware - setting headers');
+    res.header('Access-Control-Allow-Origin', 'https://shiftmate-frontend.netlify.app');
+    res.header('Access-Control-Allow-Methods', 'POST');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    next();
+})
+
+
 // Use cookies
 app.use(cookieParser());
 
