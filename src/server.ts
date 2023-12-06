@@ -15,14 +15,11 @@ const app = Express();
 
 app.use(cors(
     {
-        "origin": "*",
-        "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-        "preflightContinue": false,
-        "optionsSuccessStatus": 204
+        origin: "*",
+        methods: ["POST"],
+        credentials: true,
     }
 ));
-
-app.options('*', cors());
 
 // Use cookies
 app.use(cookieParser());
