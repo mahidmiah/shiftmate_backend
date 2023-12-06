@@ -37,6 +37,8 @@ app.use('/api/week', weekRouter);
 app.use('/api/shift', shiftRouter);
 app.use('/api/profile', profileRouter);
 
+console.log('All routes: ', app._router);
+
 mongoose.connect(process.env.MONGO_URI!)
     .then(() => {
         console.log('\x1b[1m\x1b[33m[Server]\x1b[0m Connected to the database!');

@@ -25,6 +25,10 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const user = yield businessModel_1.default.login(email, password);
         // create a token
         const token = createToken(user._id);
+        res.header('Access-Control-Allow-Origin', 'https://shiftmate-frontend.netlify.app');
+        res.header('Access-Control-Allow-Methods', 'POST');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+        res.header('Access-Control-Allow-Credentials', 'true');
         res.status(200).cookie('access_token', token, {
             httpOnly: true,
             maxAge: 3 * 24 * 60 * 60 * 1000,
