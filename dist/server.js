@@ -22,7 +22,7 @@ app.use((0, cors_1.default)({
 }));
 app.use((req, res, next) => {
     console.log('CORS middleware - setting headers');
-    res.header('Access-Control-Allow-Origin', ['https://shiftmate-frontend.netlify.app', 'https://shiftmate-frontend.vercel.app']);
+    res.header('Access-Control-Allow-Origin', 'https://shiftmate-frontend.vercel.app');
     res.header('Access-Control-Allow-Methods', 'POST');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     res.header('Access-Control-Allow-Credentials', 'true');
