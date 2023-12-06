@@ -17,12 +17,12 @@ const app = Express();
 // Use cookies
 app.use(cookieParser());
 
-app.use(cors({
-    origin: 'https://shiftmate-frontend-mahid-miahs-projects.vercel.app',
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type'] 
-}))
+app.use(
+    cors({
+        origin: 'shiftmate-frontend.vercel.app',
+        credentials: true,
+    })
+);
 
 // Allow for request body to be accessed
 app.use(Express.json());
