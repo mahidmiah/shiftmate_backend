@@ -13,22 +13,6 @@ dotenv.config();
 // Express app
 const app = Express();
 
-app.use(cors(
-    {
-        origin: "*",
-        methods: ["POST"],
-        credentials: true,
-    }
-));
-
-app.options('*', cors(
-    {
-        origin: "*",
-        methods: ["POST"],
-        credentials: true,
-    }
-));
-
 // Use cookies
 app.use(cookieParser());
 

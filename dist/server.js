@@ -18,11 +18,6 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 // Use cookies
 app.use((0, cookie_parser_1.default)());
-// Use CORS
-app.use((0, cors_1.default)({
-    origin: 'http://localhost:3000',
-    credentials: true,
-}));
 // Allow for request body to be accessed
 app.use(express_1.default.json());
 app.use((req, res, next) => {
@@ -36,6 +31,19 @@ app.use('/api/employee', employeeRoute_1.default);
 app.use('/api/week', weekRoute_1.default);
 app.use('/api/shift', shiftRoute_1.default);
 app.use('/api/profile', profileRoute_1.default);
+const issue2options = {
+    origin: true,
+    methods: ["POST"],
+    credentials: true,
+    maxAge: 3600
+};
+app.options("/issue-2", (0, cors_1.default)(issue2options));
+app.post("/issue-2", (0, cors_1.default)(issue2options), (req, res) => {
+    console.info("POST /issue-2");
+    res.json({
+        text: "Issue #2 is fixed."
+    });
+});
 mongoose_1.default.connect(process.env.MONGO_URI)
     .then(() => {
     console.log('\x1b[1m\x1b[33m[Server]\x1b[0m Connected to the database!');
