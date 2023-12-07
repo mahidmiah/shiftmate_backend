@@ -14,7 +14,7 @@ dotenv.config();
 const app = Express();
 
 app.use(cors({
-    origin: ['https://shiftmate-frontend.netlify.app', 'https://shiftmate-backend.onrender.com', 'https://shiftmate-frontend.vercel.app', 'https://www.shiftmate.tech'],
+    origin: ['https://shiftmate-frontend.netlify.app', 'https://shiftmate-backend.onrender.com', 'https://shiftmate-frontend.vercel.app', 'https://backend.shiftmate.tech', 'https://www.shiftmate.tech'],
     credentials: true
 }));
 

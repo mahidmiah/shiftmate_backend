@@ -17,7 +17,7 @@ dotenv_1.default.config();
 // Express app
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
-    origin: ['https://shiftmate-frontend.netlify.app', 'https://shiftmate-backend.onrender.com', 'https://shiftmate-frontend.vercel.app', 'https://www.shiftmate.tech'],
+    origin: ['https://shiftmate-frontend.netlify.app', 'https://shiftmate-backend.onrender.com', 'https://shiftmate-frontend.vercel.app', 'https://backend.shiftmate.tech', 'https://www.shiftmate.tech'],
     credentials: true
 }));
 app.use((req, res, next) => {
