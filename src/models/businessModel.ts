@@ -106,7 +106,9 @@ businessSchema.statics.signup = async function(email: string, password: string, 
         throw Error('Password is not strong enough');
     }
 
-    const exists = await this.findOne({ email });
+    const emailLowerCase = email.toLowerCase();
+
+    const exists = await this.findOne({ email: emailLowerCase });
 
     if(exists) {
         throw Error('Email already in use.');
@@ -115,7 +117,7 @@ businessSchema.statics.signup = async function(email: string, password: string, 
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
     const business = await this.create({
-        email: email, 
+        email: emailLowerCase, 
         password: hash,
         businessName: businessName,
         businessType: businessType,
@@ -141,7 +143,9 @@ businessSchema.statics.login = async function(email: string, password: string) {
         throw Error('All fields must be filled');
     }
 
-    const user = await this.findOne({ email });
+    const emailLowerCase = email.toLowerCase();
+
+    const user = await this.findOne({ email: emailLowerCase });
 
     if (!user) {
         throw Error('Incorrect email');
