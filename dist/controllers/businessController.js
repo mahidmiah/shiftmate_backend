@@ -33,8 +33,7 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             httpOnly: false,
             maxAge: 3 * 24 * 60 * 60 * 1000,
             sameSite: 'none',
-            secure: true,
-            domain: 'shiftmate-frontend.vercel.app', // The domain of your Next.js frontend
+            secure: true, // Ensure it's served over HTTPS
         }).json({ email, token });
     }
     catch (error) {

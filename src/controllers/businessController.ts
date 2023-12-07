@@ -24,7 +24,6 @@ export const loginUser = async (req: Request, res:Response) => {
             maxAge: 3 * 24 * 60 * 60 * 1000, // 3 days (in milliseconds)
             sameSite: 'none', 
             secure: true, // Ensure it's served over HTTPS
-            domain: 'shiftmate-frontend.vercel.app', // The domain of your Next.js frontend
         }).json({email, token});
     } catch (error: any) {
         res.status(400).json({error: error.message});
