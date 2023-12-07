@@ -56,7 +56,13 @@ const signupUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.signupUser = signupUser;
 // Logout user
 const logoutUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.status(200).cookie('access_token', '', { expires: new Date(0) }).json({ message: 'Successfully logged out!' });
+    // res.status(200).cookie('access_token', '', { expires: new Date(0) }).json({message: 'Successfully logged out!'});
+    res.status(200).cookie('access_token', '', {
+        httpOnly: false,
+        expires: new Date(0),
+        sameSite: 'none',
+        secure: true, // Ensure it's served over HTTPS
+    }).json({ message: 'Successfully logged out!' });
 });
 exports.logoutUser = logoutUser;
 // Verify user
