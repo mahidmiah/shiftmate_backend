@@ -33,7 +33,8 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             httpOnly: false,
             maxAge: 3 * 24 * 60 * 60 * 1000,
             sameSite: 'none',
-            secure: true, // Ensure it's served over HTTPS
+            secure: true,
+            domain: '.shiftmate.tech' // This allows the cookie to be shared across subdomains
         }).json({ email, token });
     }
     catch (error) {
@@ -61,7 +62,8 @@ const logoutUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         httpOnly: false,
         expires: new Date(0),
         sameSite: 'none',
-        secure: true, // Ensure it's served over HTTPS
+        secure: true,
+        domain: '.shiftmate.tech' // This allows the cookie to be shared across subdomains
     }).json({ message: 'Successfully logged out!' });
 });
 exports.logoutUser = logoutUser;

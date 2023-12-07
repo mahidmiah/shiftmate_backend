@@ -24,6 +24,7 @@ export const loginUser = async (req: Request, res:Response) => {
             maxAge: 3 * 24 * 60 * 60 * 1000, // 3 days (in milliseconds)
             sameSite: 'none', 
             secure: true, // Ensure it's served over HTTPS
+            domain: '.shiftmate.tech' // This allows the cookie to be shared across subdomains
         }).json({email, token});
     } catch (error: any) {
         res.status(400).json({error: error.message});
@@ -72,6 +73,7 @@ export const logoutUser = async (req: Request, res: Response) => {
         expires: new Date(0), // 3 days (in milliseconds)
         sameSite: 'none', 
         secure: true, // Ensure it's served over HTTPS
+        domain: '.shiftmate.tech' // This allows the cookie to be shared across subdomains
     }).json({message: 'Successfully logged out!'});
 }
 
