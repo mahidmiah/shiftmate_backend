@@ -30,11 +30,11 @@ export const sendEmail = async ({email, emailType, businessID}: any) => {
             }
         });
 
-        const verifyEmailHTML = `<p>Click <a href="${process.env.DOMAIN}/auth/verifyEmail/${base64urlHashedToken}">here</a> to verify your email</p>`;
-        const resetPasswordHTML = `<p>Click <a href="${process.env.DOMAIN}/auth/changePassword/${base64urlHashedToken}">here</a> to reset your password</p>`;
+        const verifyEmailHTML = `<p>Click <a href="${process.env.DOMAIN}/api/business/verify/${base64urlHashedToken}">here</a> to verify your email</p>`;
+        const resetPasswordHTML = `<p>Click <a href="${process.env.DOMAIN}/api/business/resetPassword/${base64urlHashedToken}">here</a> to reset your password</p>`;
 
         const mailOptions = {
-            from: 'donotreply@shiftmate.io',
+            from: 'donotreply@shiftmate.tech',
             to: email,
             subject: emailType === 'VERIFY' ? 'Verify Your Email' : 'Reset Your Password',
             html: emailType === 'VERIFY' ? verifyEmailHTML : resetPasswordHTML,

@@ -53,7 +53,7 @@ businessRouter.post('/forgotPassword/:email', (req, res) => {
 });
 
 // Reset password route
-businessRouter.post('/resetPassword/:token', (req, res) => {
+businessRouter.get('/resetPassword/:token', (req, res) => {
     resetPassword(req, res);
 });
 
