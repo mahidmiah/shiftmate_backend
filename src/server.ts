@@ -54,7 +54,9 @@ app.use('/api/week', weekRouter);
 app.use('/api/shift', shiftRouter);
 app.use('/api/profile', profileRouter);
 
-console.log('All routes: ', app._router);
+console.log('Version: 1.0.0');
+console.log('Mailer Username: ', process.env.MAILER_USERNAME);
+console.log('Mailer Password: ', process.env.MAILER_PASSWORD);
 
 mongoose.connect(process.env.MONGO_URI!)
     .then(() => {

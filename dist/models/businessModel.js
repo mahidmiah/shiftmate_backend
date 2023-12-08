@@ -85,14 +85,15 @@ businessSchema.statics.signup = function (email, password, ownerFirstName, owner
         if (!validator_1.default.isStrongPassword(password)) {
             throw Error('Password is not strong enough');
         }
-        const exists = yield this.findOne({ email });
+        const emailLowerCase = email.toLowerCase();
+        const exists = yield this.findOne({ email: emailLowerCase });
         if (exists) {
             throw Error('Email already in use.');
         }
         const salt = yield bcrypt_1.default.genSalt(10);
         const hash = yield bcrypt_1.default.hash(password, salt);
         const business = yield this.create({
-            email: email,
+            email: emailLowerCase,
             password: hash,
             businessName: businessName,
             businessType: businessType,
@@ -115,7 +116,10 @@ businessSchema.statics.login = function (email, password) {
         if (!email || !password) {
             throw Error('All fields must be filled');
         }
-        const user = yield this.findOne({ email });
+        const emailLowerCase = email.toLowerCase();
+        console.log('Email: ', email);
+        console.log('Email lowercase: ', emailLowerCase);
+        const user = yield this.findOne({ email: emailLowerCase });
         if (!user) {
             throw Error('Incorrect email');
         }

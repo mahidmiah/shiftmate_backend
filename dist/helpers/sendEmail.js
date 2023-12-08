@@ -18,6 +18,7 @@ const businessModel_1 = __importDefault(require("../models/businessModel"));
 const crypto_1 = __importDefault(require("crypto"));
 const base64url_1 = __importDefault(require("base64url"));
 const sendEmail = ({ email, emailType, businessID }) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log('sendEmail function called');
     try {
         const hashedToken = crypto_1.default.createHash('sha256').update(businessID.toString()).digest();
         const base64urlHashedToken = base64url_1.default.encode(hashedToken);
@@ -33,24 +34,33 @@ const sendEmail = ({ email, emailType, businessID }) => __awaiter(void 0, void 0
                 resetPasswordTokenExpiry: Date.now() + 3600000,
             });
         }
-        const transporter = nodemailer_1.default.createTransport({
-            host: "sandbox.smtp.mailtrap.io",
-            port: 2525,
-            auth: {
-                user: "be3140c004d847",
-                pass: "3cf01a1ba68533"
-            }
-        });
-        const verifyEmailHTML = `<p>Click <a href="${process.env.DOMAIN}/auth/verifyEmail/${base64urlHashedToken}">here</a> to verify your email</p>`;
-        const resetPasswordHTML = `<p>Click <a href="${process.env.DOMAIN}/auth/changePassword/${base64urlHashedToken}">here</a> to reset your password</p>`;
-        const mailOptions = {
-            from: 'donotreply@shiftmate.io',
-            to: email,
-            subject: emailType === 'VERIFY' ? 'Verify Your Email' : 'Reset Your Password',
-            html: emailType === 'VERIFY' ? verifyEmailHTML : resetPasswordHTML,
-        };
-        const mailResponse = yield transporter.sendMail(mailOptions);
-        return mailResponse;
+        try {
+            const transporter = nodemailer_1.default.createTransport({
+                host: "live.smtp.mailtrap.io",
+                port: 587,
+                auth: {
+                    user: process.env.MAILER_USERNAME,
+                    pass: process.env.MAILER_PASSWORD
+                }
+            });
+            const verifyEmailHTML = `<p>Click <a href="${process.env.DOMAIN}/api/business/verify/${base64urlHashedToken}">here</a> to verify your email</p>`;
+            const resetPasswordHTML = `<p>Click <a href="${process.env.DOMAIN}/api/business/resetPassword/${base64urlHashedToken}">here</a> to reset your password</p>`;
+            console.log('Username: ', process.env.MAILER_USERNAME);
+            console.log('Password: ', process.env.MAILER_PASSWORD);
+            const mailOptions = {
+                from: 'donotreply@shiftmate.tech',
+                to: email,
+                subject: emailType === 'VERIFY' ? 'Verify Your Email' : 'Reset Your Password',
+                html: emailType === 'VERIFY' ? verifyEmailHTML : resetPasswordHTML,
+            };
+            console.log('Debug: ', mailOptions);
+            const mailResponse = yield transporter.sendMail(mailOptions);
+            console.log('Mail response: ', mailResponse);
+            return mailResponse;
+        }
+        catch (error) {
+            console.error('Error in sendEmail function:', error);
+        }
     }
     catch (error) {
         throw new Error(error.message);

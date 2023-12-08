@@ -139,11 +139,17 @@ businessSchema.statics.signup = async function(email: string, password: string, 
 
 // Static login method
 businessSchema.statics.login = async function(email: string, password: string) {
+
+    console.log('Login function called');
+
     if (!email || !password){
         throw Error('All fields must be filled');
     }
 
     const emailLowerCase = email.toLowerCase();
+
+    console.log('Email: ', email);
+    console.log('Email lowercase: ', emailLowerCase);
 
     const user = await this.findOne({ email: emailLowerCase });
 

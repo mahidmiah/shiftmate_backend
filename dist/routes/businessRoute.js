@@ -45,7 +45,7 @@ businessRouter.post('/forgotPassword/:email', (req, res) => {
     (0, businessController_1.forgotPassword)(req, res);
 });
 // Reset password route
-businessRouter.post('/resetPassword/:token', (req, res) => {
+businessRouter.get('/resetPassword/:token', (req, res) => {
     (0, businessController_1.resetPassword)(req, res);
 });
 // Get all positions route
