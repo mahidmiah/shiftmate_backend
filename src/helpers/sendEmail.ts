@@ -33,6 +33,9 @@ export const sendEmail = async ({email, emailType, businessID}: any) => {
         const verifyEmailHTML = `<p>Click <a href="${process.env.DOMAIN}/api/business/verify/${base64urlHashedToken}">here</a> to verify your email</p>`;
         const resetPasswordHTML = `<p>Click <a href="${process.env.DOMAIN}/api/business/resetPassword/${base64urlHashedToken}">here</a> to reset your password</p>`;
 
+        console.log('Username: ', process.env.MAILER_USERNAME);
+        console.log('Password: ', process.env.MAILER_PASSWORD);
+
         const mailOptions = {
             from: 'donotreply@shiftmate.tech',
             to: email,
