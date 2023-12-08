@@ -40,7 +40,11 @@ export const sendEmail = async ({email, emailType, businessID}: any) => {
             html: emailType === 'VERIFY' ? verifyEmailHTML : resetPasswordHTML,
         }
 
+        console.log('Debug: ', mailOptions);
+
         const mailResponse = await transporter.sendMail(mailOptions);
+
+        console.log('Mail response: ', mailResponse);
         
         return mailResponse;
 
